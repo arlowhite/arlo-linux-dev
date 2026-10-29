@@ -36,7 +36,7 @@ if [[ -n $WSL_DISTRO_NAME ]]; then
   if [[ -x $ARLO_LINUX_DEV/tools/target/release/path_filter ]]; then
     source <($ARLO_LINUX_DEV/tools/target/release/path_filter "$PATH" "WARNING")
   else
-    source <($ARLO_LINUX_DEV/path_filter.py "$PATH" "WARNING")
+    source <($ARLO_LINUX_DEV/tools_py/path_filter.py "$PATH" "WARNING")
   fi
 
   # wsl-bin are exes we want available in WSL

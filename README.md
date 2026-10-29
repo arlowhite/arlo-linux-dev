@@ -1,12 +1,14 @@
 # arlo-linux-dev
 
-My Linux dev environment config. It holds the zsh setup on top of [oh-my-zsh](https://ohmyz.sh/): the `.zshrc`, a custom prompt theme and shell aliases.
+My Linux dev environment config. Works in WSL, Mac, Linux. It holds the zsh setup on top of [oh-my-zsh](https://ohmyz.sh/): the `.zshrc`, a custom prompt theme and shell aliases.
+
+The main feature that started this is filtering out unwanted Windows paths from your `PATH` in WSL.
 
 ## Contents
 
 ```
 zshrc                        # symlinked to ~/.zshrc
-path_filter.py               # strips Windows dirs from PATH on WSL (sourced by zshrc)
+tools_py/path_filter.py      # strips Windows dirs from PATH on WSL (sourced by zshrc)
 tools/                       # Rust crate for tools/scripts (one binary per src/bin/*.rs)
 zsh-custom/                  # oh-my-zsh ZSH_CUSTOM directory
 ├── dev-tools.zsh            # fnm, pnpm, juliaup, ng, uv, Rust PATH setup and completions
@@ -23,11 +25,11 @@ Every `*.zsh` file in `zsh-custom/` is loaded automatically by oh-my-zsh, in alp
 1. Install zsh and make it your default shell:
 
    ```sh
-   sudo apt install zsh git
+   sudo apt install zsh
    chsh -s "$(which zsh)"
    ```
 
-2. Install oh-my-zsh:
+2. [Install oh-my-zsh](https://ohmyz.sh/#install):
 
    ```sh
    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -40,12 +42,7 @@ Every `*.zsh` file in `zsh-custom/` is loaded automatically by oh-my-zsh, in alp
    git clone <repo-url> ~/code/arlo-linux-dev
    ```
 
-4. Replace the `~/.zshrc` the installer created with a symlink to the one in this repo:
-
-   ```sh
-   mv ~/.zshrc ~/.zshrc.pre-arlo-linux-dev
-   ln -s ~/code/arlo-linux-dev/zshrc ~/.zshrc
-   ```
+4. Run [install.sh](./install.sh)
 
 5. Open a new terminal, or run `exec zsh`.
 

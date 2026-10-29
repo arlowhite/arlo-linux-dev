@@ -31,7 +31,7 @@ Every `*.zsh` file in `zsh-custom/` is loaded automatically by oh-my-zsh, in alp
    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
    ```
 
-3. Clone this repo. It must be at `~/code/arlo-linux-dev`, because `zshrc` points `ZSH_CUSTOM` at that path:
+3. Clone this repo anywhere (`zshrc` locates itself); `~/code/arlo-linux-dev` is used below:
 
    ```sh
    mkdir -p ~/code

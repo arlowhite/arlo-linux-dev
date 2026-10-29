@@ -1,2 +1,2 @@
-alias zshconfig="code ~/code/arlo-linux-dev"
+alias zshconfig="code $ARLO_LINUX_DEV"
 alias ohmyzsh="code ~/.oh-my-zsh"

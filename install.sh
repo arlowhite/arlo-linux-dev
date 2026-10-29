@@ -11,11 +11,6 @@ if ! command -v zsh >/dev/null 2>&1; then
     exit 1
 fi
 
-# zshrc sets ZSH_CUSTOM to this path
-if [ "$REPO_DIR" != "$HOME/code/arlo-linux-dev" ]; then
-    echo "warning: repo is at $REPO_DIR, but zshrc expects ~/code/arlo-linux-dev" >&2
-fi
-
 # 2. install oh-my-zsh if needed
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing oh-my-zsh"

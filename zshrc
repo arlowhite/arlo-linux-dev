@@ -5,7 +5,8 @@
 typeset -U path
 
 WIN_HOME=/mnt/c/Users/awhite
-ARLO_LINUX_DEV=~/code/arlo-linux-dev
+# Directory of this file, resolved through the ~/.zshrc symlink.
+ARLO_LINUX_DEV=${0:A:h}
 
 # WSL: drop Windows directories from PATH, except VS Code and JetBrains.
 # Runs first so nothing below hashes the slow /mnt/c directories.
@@ -80,7 +81,7 @@ ZSH_THEME="arlo"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="$HOME/code/arlo-linux-dev/zsh-custom"
+ZSH_CUSTOM="$ARLO_LINUX_DEV/zsh-custom"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/

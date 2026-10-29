@@ -9,7 +9,7 @@ typeset -U path
 if [[ -n $WSL_DISTRO_NAME ]]; then
   for p in $path; do
     if [[ $p =~ '^(/mnt/c/Users/[^/]+)/' ]]; then
-      WIN_HOME=$match[1]
+      export WIN_HOME=$match[1]
       break
     fi
   done
@@ -23,6 +23,18 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="arlo"
+
+# Directory of this file, resolved through the ~/.zshrc symlink.
+# %x is the file being sourced; $0 is just "zsh" in startup files.
+export ARLO_LINUX_DEV=${${(%):-%x}:A:h}
+
+# WSL: drop Windows directories from PATH, except VS Code and JetBrains.
+# Runs first so nothing below hashes the slow /mnt/c directories.
+# WARNING (one-line summary), INFO (show kept paths), DEBUG
+source <($ARLO_LINUX_DEV/path_filter.py "$PATH" "WARNING")
+
+# wsl-bin are exes we want available in WSL
+export PATH=$PATH:$ARLO_LINUX_DEV/scripts:$WIN_HOME/.local/wsl-bin
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load

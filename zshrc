@@ -4,13 +4,15 @@
 # Keep PATH entries unique (nested shells re-prepend the same dirs).
 typeset -U path
 
+WIN_HOME=/mnt/c/Users/awhite
 ARLO_LINUX_DEV=~/code/arlo-linux-dev
 
 # WSL: drop Windows directories from PATH, except VS Code and JetBrains.
 # Runs first so nothing below hashes the slow /mnt/c directories.
 source <($ARLO_LINUX_DEV/path_filter.py "$PATH")
 
-export PATH=$PATH:$ARLO_LINUX_DEV/scripts
+# wsl-bin are exes we want available in WSL
+export PATH=$PATH:$ARLO_LINUX_DEV/scripts:$WIN_HOME/.local/wsl-bin
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

@@ -1,0 +1,40 @@
+#!/bin/bash
+set -euo pipefail
+
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ZSHRC="$HOME/.zshrc"
+BACKUP="$HOME/.zshrc.pre-arlo-linux-dev"
+
+# 1. zsh must be installed
+if ! command -v zsh >/dev/null 2>&1; then
+    echo "error: zsh is not installed (try: sudo apt install zsh)" >&2
+    exit 1
+fi
+
+# zshrc sets ZSH_CUSTOM to this path
+if [ "$REPO_DIR" != "$HOME/code/arlo-linux-dev" ]; then
+    echo "warning: repo is at $REPO_DIR, but zshrc expects ~/code/arlo-linux-dev" >&2
+fi
+
+# 2. install oh-my-zsh if needed
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing oh-my-zsh"
+    # --unattended: don't chsh or start zsh; KEEP_ZSHRC: leave ~/.zshrc for the step below
+    KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
+
+# 3. move aside the existing ~/.zshrc
+if [ -L "$ZSHRC" ]; then
+    echo "Removing existing symlink:"
+    ls -l "$ZSHRC"
+    rm "$ZSHRC"
+elif [ -f "$ZSHRC" ]; then
+    echo "Moving $ZSHRC to $BACKUP"
+    mv "$ZSHRC" "$BACKUP"
+fi
+
+# 4. link to the zshrc in this repo
+ln -s "$REPO_DIR/zshrc" "$ZSHRC"
+ls -l "$ZSHRC"
+
+echo "Done. Open a new terminal or run: exec zsh"

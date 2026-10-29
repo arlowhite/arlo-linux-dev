@@ -2,6 +2,8 @@
 
 fnm install v24
 fnm install v26
+# bump the default alias
+fnm default v24
 fnm ls
 
 pnpm self-update

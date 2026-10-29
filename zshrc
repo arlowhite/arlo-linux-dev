@@ -10,6 +10,8 @@ ARLO_LINUX_DEV=~/code/arlo-linux-dev
 # Runs first so nothing below hashes the slow /mnt/c directories.
 source <($ARLO_LINUX_DEV/path_filter.py "$PATH")
 
+export PATH=$PATH:$ARLO_LINUX_DEV/scripts
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 

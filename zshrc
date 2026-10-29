@@ -28,13 +28,15 @@ ZSH_THEME="arlo"
 # %x is the file being sourced; $0 is just "zsh" in startup files.
 export ARLO_LINUX_DEV=${${(%):-%x}:A:h}
 
-# WSL: drop Windows directories from PATH, except VS Code and JetBrains.
-# Runs first so nothing below hashes the slow /mnt/c directories.
-# WARNING (one-line summary), INFO (show kept paths), DEBUG
-source <($ARLO_LINUX_DEV/path_filter.py "$PATH" "WARNING")
+if [[ -n $WSL_DISTRO_NAME ]]; then
+  # WSL: drop Windows directories from PATH, except VS Code and JetBrains.
+  # Runs first so nothing below hashes the slow /mnt/c directories.
+  # WARNING (one-line summary), INFO (show kept paths), DEBUG
+  source <($ARLO_LINUX_DEV/path_filter.py "$PATH" "WARNING")
 
-# wsl-bin are exes we want available in WSL
-export PATH=$PATH:$ARLO_LINUX_DEV/scripts:$WIN_HOME/.local/wsl-bin
+  # wsl-bin are exes we want available in WSL
+  export PATH=$PATH:$ARLO_LINUX_DEV/scripts:$WIN_HOME/.local/wsl-bin
+fi
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load

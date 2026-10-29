@@ -6,6 +6,8 @@ My Linux dev environment config. It holds the zsh setup on top of [oh-my-zsh](ht
 
 ```
 zshrc                        # symlinked to ~/.zshrc
+path_filter.py               # strips Windows dirs from PATH on WSL (sourced by zshrc)
+tools/                       # Rust crate for tools/scripts (one binary per src/bin/*.rs)
 zsh-custom/                  # oh-my-zsh ZSH_CUSTOM directory
 ├── dev-tools.zsh            # fnm, pnpm, juliaup, ng, uv, Rust PATH setup and completions
 ├── wsl.zsh                  # WSL settings (DOCKER_HOST)
@@ -46,6 +48,14 @@ Every `*.zsh` file in `zsh-custom/` is loaded automatically by oh-my-zsh, in alp
    ```
 
 5. Open a new terminal, or run `exec zsh`.
+
+## Rust tools
+
+`tools/` is a Cargo crate; each file in `tools/src/bin/` builds to its own binary. `path_filter` is a Rust port of `path_filter.py`.
+
+```sh
+cd tools && cargo build --release   # binaries land in tools/target/release/
+```
 
 ## Prompt
 

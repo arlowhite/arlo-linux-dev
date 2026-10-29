@@ -7,6 +7,8 @@ My Linux dev environment config. It holds the zsh setup on top of [oh-my-zsh](ht
 ```
 zshrc                        # symlinked to ~/.zshrc
 zsh-custom/                  # oh-my-zsh ZSH_CUSTOM directory
+├── dev-tools.zsh            # fnm, pnpm, juliaup, ng, uv, Rust PATH setup and completions
+├── wsl.zsh                  # WSL settings (DOCKER_HOST)
 ├── reefguide.zsh            # ReefGuide env vars and aliases (rg-*)
 └── themes/
     └── arlo.zsh-theme       # robbyrussell + AWS_PROFILE / CONFIG_FILE_NAME

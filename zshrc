@@ -32,7 +32,12 @@ if [[ -n $WSL_DISTRO_NAME ]]; then
   # WSL: drop Windows directories from PATH, except VS Code and JetBrains.
   # Runs first so nothing below hashes the slow /mnt/c directories.
   # WARNING (one-line summary), INFO (show kept paths), DEBUG
-  source <($ARLO_LINUX_DEV/path_filter.py "$PATH" "WARNING")
+  # Uses the Rust build (tools/, built by install.sh) if present, else the Python script.
+  if [[ -x $ARLO_LINUX_DEV/tools/target/release/path_filter ]]; then
+    source <($ARLO_LINUX_DEV/tools/target/release/path_filter "$PATH" "WARNING")
+  else
+    source <($ARLO_LINUX_DEV/path_filter.py "$PATH" "WARNING")
+  fi
 
   # wsl-bin are exes we want available in WSL
   export PATH=$PATH:$ARLO_LINUX_DEV/scripts:$WIN_HOME/.local/wsl-bin

@@ -38,4 +38,12 @@ else
     ls -l "$ZSHRC"
 fi
 
+# 6. build the Rust tools (zshrc falls back to path_filter.py without them)
+if command -v cargo >/dev/null 2>&1; then
+    echo "Building Rust tools"
+    cargo build --release --manifest-path "$REPO_DIR/tools/Cargo.toml"
+else
+    echo "cargo not found; skipping Rust tools build (see https://rustup.rs)"
+fi
+
 echo "Done. Open a new terminal or run: exec zsh"

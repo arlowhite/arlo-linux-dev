@@ -3,11 +3,11 @@ export REEFGUIDE_REPO="${HOME}/code/reefguide"
 alias rg-cd='cd $REEFGUIDE_REPO'
 alias rg-ld='cd $REEFGUIDE_REPO && ./local-dev.sh'
 
-alias rg-ng='cd $REEFGUIDE_REPO/packages/app && ng serve'
+alias rg-ng='cd $REEFGUIDE_REPO && pnpm dev-app'
 # just a different name
-alias rg-app='cd $REEFGUIDE_REPO/packages/app && ng serve'
+alias rg-app='cd $REEFGUIDE_REPO && pnpm dev-app'
 
-alias rg-api='cd $REEFGUIDE_REPO/packages/web-api && turbo watch api'
+alias rg-api='cd $REEFGUIDE_REPO && pnpm dev-api'
 
 # Database
 alias rg-db-status='cd $REEFGUIDE_REPO/packages/db && pnpm prisma migrate status'

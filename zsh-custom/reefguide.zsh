@@ -24,4 +24,4 @@ alias rg-infra-test='cd $REEFGUIDE_REPO/packages/infra && . ./configs/test_env.s
 alias rg-infra-prod='cd $REEFGUIDE_REPO/packages/infra && . ./configs/prod_env.sh'
 
 # Start Julia ReefGuide Worker
-alias rg-worker='cd ${HOME}/code/ReefGuideWorker.jl && julia +1.11 --project=. -t8,1 start.jl'
+alias rg-worker='cd ${HOME}/code/ReefGuideWorker.jl && ./start.sh'
